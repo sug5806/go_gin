@@ -12,7 +12,7 @@ type newsFeedPostRequest struct {
 	Post  string `json:"post"`
 }
 
-func NewsFeedPost(feed *newsfeed.Repo) gin.HandlerFunc {
+func NewsFeedPost(feed newsfeed.Adder) gin.HandlerFunc {
 	return func(context *gin.Context) {
 		requestBody := newsFeedPostRequest{}
 		err := context.Bind(&requestBody)
