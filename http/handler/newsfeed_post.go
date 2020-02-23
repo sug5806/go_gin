@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"go_gin/platform/newsfeed"
 	"net/http"
@@ -14,7 +15,11 @@ type newsFeedPostRequest struct {
 func NewsFeedPost(feed *newsfeed.Repo) gin.HandlerFunc {
 	return func(context *gin.Context) {
 		requestBody := newsFeedPostRequest{}
-		context.Bind(&requestBody)
+		err := context.Bind(&requestBody)
+
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 
 		item := newsfeed.Item{
 			Title: requestBody.Title,
