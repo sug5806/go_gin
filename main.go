@@ -1,17 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
-
-func ping(context *gin.Context) {
-	context.JSON(200, gin.H{
-		"message": "pong",
-	})
-}
+import (
+	"github.com/gin-gonic/gin"
+	"go_gin/cmd/http/handler"
+)
 
 func main() {
 	r := gin.Default()
 
-	r.GET("/ping", ping)
+	r.GET("/ping", handler.PingGet())
 
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	_ = r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
